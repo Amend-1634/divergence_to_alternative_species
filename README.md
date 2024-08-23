@@ -1,6 +1,6 @@
 # Tip Dating Pipeline with 3bp End Ignoring
 
-This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, specifically ignoring the last 3 base pairs (3bp) on either side of the reads. This is to avoid bias in the estimation caused by ancient DNA damage at the read ends, following the particular protocol applied to the Alazeya steppe bison gut content sample.
+This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, specifically ignoring the last 3 base pairs (3bp) on either side of the reads. This is to avoid bias in the estimation caused by ancient DNA damage at the read ends, following the particular protocol applied to the Alazeya steppe bison gut content sample. The main branch is the most up-to-date practices corresponding to the analysis for Alazeya steppe bison gut content. If you would like to use this without trimming off the end 3bp, you can refer to the branch called `no_3bp_cropping`. If you would like to trim off other length at the read end, please change line 49 of `bin/est_mutations_3bp_transition.py` to only index base that's out of the range of N bp at the read end.
 
 ## Setup
 
