@@ -1,6 +1,6 @@
 # Tip Dating Pipeline with 3bp End Ignoring
 
-This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, specifically ignoring the last 3 base pairs (3bp) on either side of the reads. This is to avoid bias in the estimation caused by ancient DNA damage at the read ends, following the particular protocol applied to the Alazeya steppe bison gut content sample.
+This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, without trimming off the last 3 base pairs (3bp) on either side of the reads.
 
 ## Setup
 
@@ -8,16 +8,13 @@ This pipeline has been tested with Nextflow version 22.10.1. Please ensure you h
 
 ## To run the workflow
 
-while IFS= read -r genus;do
-        echo ${dir}${genus}.fas
-
-        time nextflow run tip_dating_3bp.nf \
-        --label "$genus" \
-        --all_input "fas/${genus}.fas" \
-        --threads "15" \
+```
+nextflow run tip_dating_1.nf \
+        --label "$(basename $file | sed 's/.fas//')" \
+        --all_input "/path/to/genus.fas" \
+        --threads "5" \
         -resume
-
-done < list_genus
+```
 
 ## Input
 
