@@ -8,7 +8,7 @@ This pipeline has been tested with Nextflow version 22.10.1. Please ensure you h
 
 ## To run the workflow
 
-while IFS= read -r genus;do
+    while IFS= read -r genus;do
         echo ${dir}${genus}.fas
 
         time nextflow run tip_dating_3bp.nf \
@@ -17,7 +17,7 @@ while IFS= read -r genus;do
         --threads "15" \
         -resume
 
-done < list_genus
+    done < list_genus
 
 ## Input
 
