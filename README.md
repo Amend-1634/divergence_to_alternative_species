@@ -1,6 +1,8 @@
 # Tip Dating Pipeline with 3bp End Ignoring
 
+
 This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, without trimming off the last 3 base pairs (3bp) on either side of the reads.
+
 
 ## Setup
 
@@ -8,13 +10,12 @@ This pipeline has been tested with Nextflow version 22.10.1. Please ensure you h
 
 ## To run the workflow
 
-```
+
 nextflow run tip_dating_1.nf \
         --label "$(basename $file | sed 's/.fas//')" \
         --all_input "/path/to/genus.fas" \
         --threads "5" \
         -resume
-```
 
 ## Input
 
@@ -22,10 +23,10 @@ example for ${taxa}.fas: first row as the path to the bam file with all mapped r
 
 ```
 $ cat Poa.fas 
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/bam/61genus-Poa_pratensis_4545-ext.bam
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/fasta/Poa_pratensis_4545.fna
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/fasta/Poa_pratensis_subsp._pratensis_368382.fna
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/fasta/Poa_glauca_227214.fna
+/path/to/61genus-Poa_pratensis_4545-ext.bam
+/path/to/Poa_pratensis_4545.fna
+/path/to/Poa_pratensis_subsp._pratensis_368382.fna
+/path/to/Poa_glauca_227214.fna
 ```
 
 ## Usage
