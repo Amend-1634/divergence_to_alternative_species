@@ -1,6 +1,8 @@
 # Tip Dating Pipeline with 3bp End Ignoring
 
-This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, specifically ignoring the last 3 base pairs (3bp) on either side of the reads. This is to avoid bias in the estimation caused by ancient DNA damage at the read ends, following the particular protocol applied to the Alazeya steppe bison gut content sample. The main branch is the most up-to-date practices corresponding to the analysis for Alazeya steppe bison gut content. If you would like to use this without trimming off the end 3bp, you can refer to the branch called `no_3bp_cropping`. If you would like to trim off other length at the read end, please change line 49 of `bin/est_mutations_3bp_transition.py` to only index base that's out of the range of N bp at the read end.
+
+This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, without trimming off the last 3 base pairs (3bp) on either side of the reads.
+
 
 ## Setup
 
@@ -8,16 +10,12 @@ This pipeline has been tested with Nextflow version 22.10.1. Please ensure you h
 
 ## To run the workflow
 
-    while IFS= read -r genus;do
-        echo ${dir}${genus}.fas
 
-        time nextflow run tip_dating_3bp.nf \
-        --label "$genus" \
-        --all_input "fas/${genus}.fas" \
-        --threads "15" \
+nextflow run tip_dating_1.nf \
+        --label "$(basename $file | sed 's/.fas//')" \
+        --all_input "/path/to/genus.fas" \
+        --threads "5" \
         -resume
-
-    done < list_genus
 
 ## Input
 
@@ -25,10 +23,10 @@ example for ${taxa}.fas: first row as the path to the bam file with all mapped r
 
 ```
 $ cat Poa.fas 
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/bam/61genus-Poa_pratensis_4545-ext.bam
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/fasta/Poa_pratensis_4545.fna
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/fasta/Poa_pratensis_subsp._pratensis_368382.fna
-/crex/proj/snic2022-6-144/nobackup/CHENYU/tip_dating/data1/fasta/Poa_glauca_227214.fna
+/path/to/61genus-Poa_pratensis_4545-ext.bam
+/path/to/Poa_pratensis_4545.fna
+/path/to/Poa_pratensis_subsp._pratensis_368382.fna
+/path/to/Poa_glauca_227214.fna
 ```
 
 ## Usage
