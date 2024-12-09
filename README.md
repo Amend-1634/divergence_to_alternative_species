@@ -1,7 +1,6 @@
-# Tip Dating Pipeline with 3bp End Ignoring
+# Usage
 
-
-This Nextflow pipeline is designed for estimating its sequence divergence to all alternative reference taxa, without trimming off the last 3 base pairs (3bp) on either side of the reads.
+This Nextflow pipeline is designed for remapping the reads to other fasta files and estimate the number of mismatches, after removing all potential damage (C-to-T at forward strand, G-to-A at reverse strand).
 
 
 ## Setup
